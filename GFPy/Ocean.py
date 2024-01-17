@@ -1385,8 +1385,10 @@ def plot_CTD_map(CTD,stations=None,topography=None,extent=None,
     # make sure aspect ration of the axes is not too extreme
     ax.set_aspect('auto')
     if adjust_text:
-        adj_txt(texts, expand_text=(1.2,1.6),
-            arrowprops=dict(arrowstyle='-', color='black'), ax=ax)
+        #adj_txt(texts, expand_text=(1.2,1.6),
+            #arrowprops=dict(arrowstyle='-', color='black'), ax=ax)
+         adj_txt(texts, arrowprops=dict(arrowstyle='-', color='black'), ax=ax)
+
     plt.gcf().canvas.draw()
     plt.tight_layout()
 
