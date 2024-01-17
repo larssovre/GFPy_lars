@@ -299,7 +299,11 @@ def read_HOBO(filenames):
         ID = file[-9:-4]
         station_ID.append(ID)
         station[file[-9:-4]] = pd.read_csv(file, header = 1, names = ['Timestamp', 'data'])
-        station[file[-9:-4]]['Event'], station[file[-9:-4]]['Count'] = station[file[-9:-4]].data.str.split('\t',1).str
+        #station[file[-9:-4]]['Event'], station[file[-9:-4]]['Count'] = station[file[-9:-4]].data.str.split('\t',1).str
+        split_data = station[file[-9:-4]].data.str.split('\t', n=1, expand=True)
+        station[file[-9:-4]]['Event'] = split_data[0].astype(int)
+        station[file[-9:-4]]['Count'] = split_data[1].astype(int)
+
         #del station[file[-18:-13]].data
         station[file[-9:-4]]['Event'] = station[file[-9:-4]]['Event'].astype(int)
         station[file[-9:-4]]['Count'] = station[file[-9:-4]]['Count'].astype(int)
